@@ -53,7 +53,7 @@ class CustomRevenueBox extends StatelessWidget {
                     ExtraSmallText(text: secondText, color: const Color(0xFFF4F4F4)),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -62,7 +62,7 @@ class CustomRevenueBox extends StatelessWidget {
                       textAlign: TextAlign.left,
                       style: const TextStyle(
                         color: Color(0xFFE7E7E7),
-                        fontSize: 20,
+                        fontSize: 28,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

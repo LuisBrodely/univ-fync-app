@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final double width;
   final double height;
   final TextEditingController? controller;
+  final ValueChanged<String>? onChanged; // Nuevo parámetro onChanged
 
   const CustomTextField({
     Key? key,
@@ -14,6 +15,7 @@ class CustomTextField extends StatelessWidget {
     this.width = double.infinity,
     this.height = 50,
     this.controller,
+    this.onChanged, // Agregar onChanged
   }) : super(key: key);
 
   @override
@@ -27,6 +29,7 @@ class CustomTextField extends StatelessWidget {
       ),
       child: TextField(
         controller: controller,
+        onChanged: onChanged, // Asignar onChanged al TextField
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: const TextStyle(

@@ -103,8 +103,8 @@ class FourCircularButtons extends StatelessWidget {
                 },
               ),
               CircularIconButton(
-                icon: Icons.add_chart,
-                text: 'Inversiones',
+                icon: Icons.account_balance_wallet_outlined,
+                text: 'Mi Cuenta',
                 iconColor: Colors.white,
                 backgroundColor: const Color(0xFF161515),
                 onPressed: () {

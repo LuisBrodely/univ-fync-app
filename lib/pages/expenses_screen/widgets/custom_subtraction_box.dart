@@ -34,7 +34,7 @@ class CustomSubtractionBox extends StatelessWidget {
                     text: 'Suma total de gastos hoy', color: Color(0xFFFF9393)),
                 SizedBox(height: 6),
                 Text(
-                  '-\$4,672.00',
+                  '\$4,672.00',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: Colors.white,

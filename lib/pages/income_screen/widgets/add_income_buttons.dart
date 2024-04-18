@@ -26,29 +26,6 @@ class AddIncomeButtons extends StatelessWidget {
           onPressed: onAddExpensePressed,
         ),
         const SizedBox(height: 16),
-        Row(
-          children: [
-            Expanded(
-              child: CustomButton(
-                text: 'Crear ingreso fijo',
-                backgroundColor: const Color(0xFFFAFAFA),
-                textColor: const Color(0xFF282828),
-                borderColor: const Color(0xFFB6B6B6),
-                onPressed: onCreateFixedExpensePressed,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: CustomButton(
-                text: 'Crear categoría',
-                backgroundColor: const Color(0xFF1E1C1C),
-                borderColor: const Color(0xFF1E1C1C),
-                textColor: const Color(0xFFFAFAFA),
-                onPressed: onCreateCategoryPressed,
-              ),
-            ),
-          ],
-        ),
       ],
     );
   }
