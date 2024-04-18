@@ -17,6 +17,7 @@ class IncomeScreen extends StatefulWidget {
 class _IncomeScreenState extends State<IncomeScreen> {
   List<Map<String, dynamic>> incomes = [];
   final AuthService _authService = AuthService();
+  double totalIncome = 0; // Variable para almacenar el total de los ingresos
 
   @override
   void initState() {
@@ -29,8 +30,15 @@ class _IncomeScreenState extends State<IncomeScreen> {
       final userId = await _authService.getUserId();
       final List<Map<String, dynamic>> incomesData =
           await BankService().getIncomes(userId ?? '');
+
+      // Calcula el total de los gastos
+      double totalInc = 0;
+      for (var income in incomesData) {
+        totalInc += income['amount'];
+      }
       setState(() {
         incomes = incomesData;
+        totalIncome = totalInc;
       });
     } catch (e) {
       print('Error al obtener los ingresos: $e');
@@ -50,7 +58,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomAdditionBox(),
+              CustomAdditionBox(totalIncome: totalIncome.toStringAsFixed(2)),
               const SizedBox(height: 24),
               const CustomTitleBar(title: 'Lista de Ingresos', subtitle: ''),
               const SizedBox(height: 18),
@@ -59,10 +67,8 @@ class _IncomeScreenState extends State<IncomeScreen> {
                 Column(
                   children: [
                     CustomRowWithTextField(
-                      nameHintText:
-                          income['reason'].toString(), 
-                      amountHintText:
-                          income['amount'].toString(),
+                      nameHintText: income['reason'].toString(),
+                      amountHintText: income['amount'].toString(),
                       backgroundBox: const Color(0xFFDCEF64),
                       iconColor: const Color(0xFF282828),
                       onRemovePressed: () {},

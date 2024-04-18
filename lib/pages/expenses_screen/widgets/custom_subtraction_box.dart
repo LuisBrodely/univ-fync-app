@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fync_app/widgets/general/small_text.dart';
 
 class CustomSubtractionBox extends StatelessWidget {
-  const CustomSubtractionBox({Key? key}) : super(key: key);
+  final String totalExpense;
+
+  const CustomSubtractionBox({Key? key, required this.totalExpense}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +27,18 @@ class CustomSubtractionBox extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SmallText(
+                const SmallText(
                     text: 'Suma total de gastos hoy', color: Color(0xFFFF9393)),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Text(
-                  '\$4,672.00',
+                  '\$$totalExpense',
                   textAlign: TextAlign.left,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 34,
                     fontWeight: FontWeight.bold,

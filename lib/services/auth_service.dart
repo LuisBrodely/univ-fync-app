@@ -43,6 +43,8 @@ class AuthService {
       final String? user = responseData['user'];
       final String message = responseData['message'];
 
+      print('ID_USER => $userId');
+
       // Guardar el user_id localmente
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('user_id', userId ?? '');

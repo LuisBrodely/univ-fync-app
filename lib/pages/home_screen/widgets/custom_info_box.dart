@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:fync_app/widgets/general/small_text.dart';
 
 class CustomInfoBox extends StatelessWidget {
-  const CustomInfoBox({Key? key}) : super(key: key);
+  final String totalAmount;
+  final String totalExpense;
+  final String totalIncome;
+
+  const CustomInfoBox(
+      {Key? key,
+      this.totalAmount = '333',
+      required this.totalExpense,
+      required this.totalIncome})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,25 +36,25 @@ class CustomInfoBox extends StatelessWidget {
           const SizedBox(height: 16),
           const SmallText(text: 'Saldo Disponible', color: Color(0xFFDCEF64)),
           const SizedBox(height: 6),
-          const Text(
-            '\$4,672.00',
+          Text(
+            '\$$totalAmount',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 34,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _InfoColumn(
                 title: 'Ingresos',
-                amount: '\$4,672.00',
+                amount: '\$$totalIncome',
               ),
               _InfoColumn(
                 title: 'Gastos',
-                amount: '\$2,345.00',
+                amount: '\$$totalExpense',
               ),
             ],
           ),

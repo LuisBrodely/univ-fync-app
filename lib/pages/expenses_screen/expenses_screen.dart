@@ -17,6 +17,7 @@ class ExpensesScreen extends StatefulWidget {
 class _ExpensesScreenState extends State<ExpensesScreen> {
   List<Map<String, dynamic>> expenses = []; // Lista para almacenar los gastos
   final AuthService _authService = AuthService(); // Instancia de AuthService
+  double totalExpense = 0; // Variable para almacenar el total de los gastos
 
   @override
   void initState() {
@@ -30,8 +31,16 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       final userId = await _authService.getUserId();
       final List<Map<String, dynamic>> expensesData =
           await BankService().getExpenses(userId ?? '');
+
+      // Calcula el total de los gastos
+      double totalExp = 0;
+      for (var expense in expensesData) {
+        totalExp += double.parse(expense['amount']);
+      }
+
       setState(() {
         expenses = expensesData; // Actualiza la lista de gastos
+        totalExpense = totalExp;
       });
     } catch (e) {
       print('Error al obtener los gastos: $e');
@@ -51,7 +60,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomSubtractionBox(),
+              CustomSubtractionBox(totalExpense: totalExpense.toStringAsFixed(2)),
               const SizedBox(height: 24),
               const CustomTitleBar(title: 'Lista de Gastos', subtitle: ''),
               const SizedBox(height: 18),

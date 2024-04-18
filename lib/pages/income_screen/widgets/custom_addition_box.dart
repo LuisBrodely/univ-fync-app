@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fync_app/widgets/general/small_text.dart';
 
 class CustomAdditionBox extends StatelessWidget {
-  const CustomAdditionBox({Key? key}) : super(key: key);
+  final String totalIncome;
+
+  const CustomAdditionBox({Key? key, required this.totalIncome}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +27,19 @@ class CustomAdditionBox extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SmallText(
+                const SmallText(
                     text: 'Suma total de ingresos hoy',
                     color: Color(0xFFDCEF64)),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Text(
-                  '+\$21,510.00',
+                  '+\$$totalIncome',
                   textAlign: TextAlign.left,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 34,
                     fontWeight: FontWeight.bold,

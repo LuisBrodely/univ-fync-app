@@ -77,9 +77,9 @@ class _InvestmentsScreenState extends State<InvestmentsScreen> {
                   color: Color(0xFFFAFAFA),
                 ),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 42),
               const Text(
-                'Efectivo',
+                'Cuenta',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -87,17 +87,7 @@ class _InvestmentsScreenState extends State<InvestmentsScreen> {
                   color: Color(0xFFFAFAFA),
                 ),
               ),
-              const SizedBox(height: 16),
-              const Text(
-                '\$5,000.20',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 36,
-                  color: Color(0xFFDCEF64),
-                ),
-              ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 30),
               CustomRevenueBox(
                 firstText: accountName ?? '',
                 secondText: accountNip ?? '',
@@ -106,8 +96,7 @@ class _InvestmentsScreenState extends State<InvestmentsScreen> {
                 boxColor: const Color(0xFF128E83),
                 firstTextColor: const Color(0xFFA1E0DA),
               ),
-              const SizedBox(height: 20),
-              const SizedBox(height: 100),
+              const SizedBox(height: 40),
               CustomButton(
                 text: 'Editar',
                 backgroundColor: const Color(0xFFDCEF64),

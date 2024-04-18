@@ -24,7 +24,7 @@ class CustomRowWithTextField extends StatelessWidget {
       children: [
         Expanded(
           child: CustomTextField(
-            hintText: '$nameHintText - $amountHintText',
+            hintText: '$nameHintText - \$$amountHintText',
             borderColor: const Color(0xFF5E5E5E),
           ),
         ),

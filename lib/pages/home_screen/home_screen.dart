@@ -17,6 +17,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Map<String, dynamic>> expenses = []; // Lista para almacenar los gastos
   String userName = '';
+  double totalExpense = 0; // Variable para almacenar el total de los gastos
+  double totalIncome = 0; // Variable para almacenar el total de los gastos
   final AuthService _authService = AuthService(); // Instancia de AuthService
 
   @override
@@ -31,9 +33,27 @@ class _HomeScreenState extends State<HomeScreen> {
       final name = await _authService.getUserName();
       final List<Map<String, dynamic>> expensesData =
           await BankService().getExpenses(userId ?? '');
+
+      final List<Map<String, dynamic>> incomesData =
+          await BankService().getIncomes(userId ?? '');
+
+      // Calcula el total de los ingresos
+      double totalInc = 0;
+      for (var income in incomesData) {
+        totalInc += income['amount'];
+      }
+
+      // Calcula el total de los gastos
+      double totalExp = 0;
+      for (var expense in expensesData) {
+        totalExp += double.parse(expense['amount']);
+      }
+
       setState(() {
         expenses = expensesData;
         userName = name ?? '';
+        totalExpense = totalExp;
+        totalIncome = totalInc; // Actualiza el total de los gastos
       });
     } catch (e) {
       print('Error al obtener los gastos: $e');
@@ -42,19 +62,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _getExpenses();
+
     return Scaffold(
       backgroundColor: const Color(0xFFFAFAFA),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 60),
         children: [
-            CustomAppBar(
+          CustomAppBar(
             title: 'Mi Cartera',
             subtitle: 'Hola, $userName',
             imageUrl:
                 'https://th.bing.com/th/id/R.314e2b87af0963913d9b2e72c116ce10?rik=CTZd%2bEYB2upQ0w&pid=ImgRaw&r=0',
           ),
           const SizedBox(height: 50),
-          const CustomInfoBox(),
+          CustomInfoBox(
+            totalAmount: (totalIncome - totalExpense).toStringAsFixed(2),
+            totalExpense: totalExpense.toStringAsFixed(2),
+            totalIncome: totalIncome.toStringAsFixed(2),
+          ),
           const SizedBox(height: 20),
           const FourCircularButtons(),
           const SizedBox(height: 22),
@@ -81,7 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   subtitle: expense['establishment'],
                   amount: expense['amount'],
                 ),
-                SizedBox(height: 12), // Agrega un SizedBox para la separación
+                const SizedBox(
+                    height: 12), // Agrega un SizedBox para la separación
               ],
             ),
         ],
